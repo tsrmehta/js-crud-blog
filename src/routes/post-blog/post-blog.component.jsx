@@ -5,6 +5,7 @@ import FormHeader from "../../components/form-header/form-header.component";
 import TextInput from "../../components/text-input/text-input.component";
 import FormInput from "../../components/form-input/form-input.component";
 import TagInput from "../../components/tag-input/tag-input.component";
+import CustomButton from "../../components/button/button.component";
 
 import { PostBlogFormWrapper, PostBlogForm } from "./post-blog.styles";
 
@@ -157,8 +158,8 @@ const PostBlog = () => {
           handleKeyUpEvent={handleKeyUpEvent}
           keywords={blogData.keywords}
         />
-        <InputImage handleImageInput={handleImageInput} />
-        <button>Submit</button>
+        <InputImage handleImageInput={handleImageInput} imageData={blogImage} />
+        <CustomButton buttonText="Submit" />
       </PostBlogForm>
     </PostBlogFormWrapper>
   );

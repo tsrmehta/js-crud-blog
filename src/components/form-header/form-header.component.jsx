@@ -1,10 +1,10 @@
-import { ImageDiv, CreatingSiteSvg } from "./form-header.styles";
+import { ImageDiv, CreatingSiteSvg, FormHeaderText } from "./form-header.styles";
 
 const FormHeader = ()=>{
     return (
         <ImageDiv>
             <CreatingSiteSvg />
-            <h1>Enter your post details</h1>
+            <FormHeaderText>Enter your post details</FormHeaderText>
         </ImageDiv>
     )
 }

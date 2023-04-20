@@ -14,3 +14,7 @@ export const ImageDiv = styled.div`
 export const CreatingSiteSvg = styled(PostingBlogSvg)`
   width: 300px;
 `;
+
+export const FormHeaderText = styled.h1`
+  text-align: center;
+`;
