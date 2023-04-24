@@ -8,10 +8,10 @@ import {
 } from "./post-summary.styles";
 
 const PostSummary = ({ blogData }) => {
-    const navigate = useNavigate();
-    const goToPost = ()=>{
-        navigate(`/post/${blogData.id}`)
-    }
+  const navigate = useNavigate();
+  const goToPost = () => {
+    navigate(`/post/${blogData.id}`);
+  };
   return (
     <PostSummaryContainer onClick={goToPost}>
       <PostSummaryHeading>{blogData?.headline}</PostSummaryHeading>

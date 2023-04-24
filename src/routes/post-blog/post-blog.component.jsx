@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { postRequest } from "../../utils/fetch-api.util";
 
@@ -18,7 +19,7 @@ const DEFAULT_BLOGDATA = {
   datePublished: new Date(),
   description: "",
   image: {
-    caption: "",
+    caption: "asas",
     imageId: 0,
   },
   headline: "",
@@ -27,6 +28,7 @@ const DEFAULT_BLOGDATA = {
 };
 
 const PostBlog = () => {
+  const navigate = useNavigate();
   const [blogImage, setBlogImage] = useState(null);
   const [blogData, setBlogData] = useState(DEFAULT_BLOGDATA);
 
@@ -53,6 +55,7 @@ const PostBlog = () => {
     if(error) return console.log(error);
 
     console.log(response);
+    navigate(`/post/${response.id}`)
   }
 
   const uploadImage = async()=>{
@@ -68,6 +71,8 @@ const PostBlog = () => {
     const {response, error} = await postRequest(`http://localhost:8080/o/headless-delivery/v1.0/sites/${SITE_ID}/blog-posting-images`, formData);
 
     if(error) return null;
+
+    console.log(response);
 
     return response.id
 

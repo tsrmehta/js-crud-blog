@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const PostSummaryContainer = styled.div`
-  padding: 20px;
-  margin: 10px 0;
+  padding: 10px 20px;
+  margin: 25px 0px;
   cursor: pointer;
+  border: 2px solid #e9ecef;
+  border-radius: 7px;
+  background: var(--default-background);
 `;
 
 export const PostSummaryHeading = styled.h2`
@@ -19,6 +22,7 @@ export const PostSummaryBody = styled.p`
   font-size: 15px;
   color: var(--text);
   margin-top: 10px;
+  text-align: justify;
 `;
 
 export const PostSummaryReadMore = styled.span`

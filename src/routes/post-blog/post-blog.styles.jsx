@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PostBlogFormWrapper = styled.div`
   background: #fff;
   padding: 20px;
+  max-width: 1400px;
   margin: auto;
 `;
 
