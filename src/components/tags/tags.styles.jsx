@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as XSignSVG } from "../../assets/cross.svg";
+import { ReactComponent as XSignSVG } from "../../assets/images/cross.svg";
 
 export const TagContainer = styled.span`
   border: 1px solid;

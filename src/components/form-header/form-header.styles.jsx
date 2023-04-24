@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as PostingBlogSvg } from "../../assets/Website Creator-bro.svg";
+import { ReactComponent as PostingBlogSvg } from "../../assets/images/Website Creator-bro.svg";
 
 export const ImageDiv = styled.div`
   background: linear-gradient(45deg, rgba(54, 209, 220, 1), rgba(91, 134, 229, 1));

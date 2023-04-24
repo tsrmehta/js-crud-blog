@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as AddSVG } from "../../assets/add.svg";
+import { ReactComponent as AddSVG } from "../../assets/images/add.svg";
 
 export const ImageLabel = styled.label`
   display: flex;

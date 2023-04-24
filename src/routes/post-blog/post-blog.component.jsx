@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
+import { postRequest } from "../../utils/fetch-api.util";
+
 import InputImage from "../../components/image-input/image-input.component";
 import FormHeader from "../../components/form-header/form-header.component";
 import TextInput from "../../components/text-input/text-input.component";
@@ -8,6 +10,8 @@ import TagInput from "../../components/tag-input/tag-input.component";
 import CustomButton from "../../components/button/button.component";
 
 import { PostBlogFormWrapper, PostBlogForm } from "./post-blog.styles";
+
+const SITE_ID = 20121
 
 const DEFAULT_BLOGDATA = {
   articleBody: "",
@@ -40,8 +44,39 @@ const PostBlog = () => {
     setBlogData(newBlogdata);
   };
 
-  const handleFormSubmit = (e) => {
+  const uploadBlogData = async (imageId)=>{
+    const finalBlogData = blogData; 
+    if(imageId) finalBlogData.image.imageId = imageId;
+
+    const {response, error} =await postRequest(`http://localhost:8080/o/headless-delivery/v1.0/sites/${SITE_ID}/blog-postings`, finalBlogData);
+
+    if(error) return console.log(error);
+
+    console.log(response);
+  }
+
+  const uploadImage = async()=>{
+    if(!blogImage) return null;
+
+    const formData = new FormData();
+    formData.append("file", blogImage, blogImage.name);
+
+  //   for(var pair of formData.entries()){
+  //     console.log(pair[0], pair[1]);
+  // }
+
+    const {response, error} = await postRequest(`http://localhost:8080/o/headless-delivery/v1.0/sites/${SITE_ID}/blog-posting-images`, formData);
+
+    if(error) return null;
+
+    return response.id
+
+  }
+
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
+    const imageId = await uploadImage();
+    await uploadBlogData(imageId);
   };
   const handleDivChange = (e) => {
     const currentText = e.target.innerText;
