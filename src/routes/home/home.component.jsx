@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
+import PostSummary from "../../components/post-summary/post-summary.component";
 import { getRequest } from "../../utils/fetch-api.util";
 
-import { HomeWrapper } from "./home.styles";
+import { HomeWrapper} from "./home.styles";
 
 const SITE_ID = 20121;
 
@@ -25,10 +26,7 @@ const Home = () => {
   return (
     <HomeWrapper>
       {blogs.map((blog, i) => (
-        <div key={i}>
-          <h3>{blog.headline}</h3>
-          <p>{blog.description}</p>
-        </div>
+        <PostSummary blogData={blog} key={i}/>
       ))}
     </HomeWrapper>
   );

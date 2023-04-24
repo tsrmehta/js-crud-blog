@@ -129,8 +129,8 @@ const PostBlog = () => {
     }
   };
 
-  function setEndOfContenteditable(contentEditableElement) {
-    var range, selection;
+  const setEndOfContenteditable=(contentEditableElement)=> {
+    let range, selection;
     if (document.createRange) {
       //Firefox, Chrome, Opera, Safari, IE 9+
       range = document.createRange(); //Create a range (a range is a like the selection but invisible)
