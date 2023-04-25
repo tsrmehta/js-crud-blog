@@ -19,7 +19,7 @@ export const PostImageDiv = styled.div`
   max-width: 800px;
   border-radius: 7px;
   margin: auto;
-animation: 0.3s ${zoomImage} ease-in-out;
+  animation: 0.3s ${zoomImage} ease-in-out;
 `;
 const headingAnimation = keyframes`
     0% {
@@ -31,7 +31,6 @@ const headingAnimation = keyframes`
     transform-origin:left;
   }
 `;
-
 
 export const BaseHeadingDiv = styled.div`
   font-size: 50px;
@@ -74,13 +73,14 @@ export const TextRevealingSpan = styled.span`
 `;
 
 export const BlogDescription = styled.span`
-    color: var(--secondary-text);
-    margin: 5px;
-    display: block;
+  color: var(--secondary-text);
+  margin: 5px;
+  display: block;
 `;
 
 export const BlogParagraph = styled.p`
-    text-align: justify;
-    padding: 5px;
-    margin-top: 20px;
+  text-align: justify;
+  padding: 5px;
+  margin-top: 20px;
+  /* white-space: pre-line; */
 `;

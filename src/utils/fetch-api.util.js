@@ -70,3 +70,33 @@ export const postRequest = async (url, body) => {
     };
   }
 };
+
+export const deleteRequest = async(url)=>{
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Authorization: AUTHORIZATION,
+      },
+      method: 'DELETE'
+    });
+
+    
+    if (res.ok) {
+      return {
+        response: 'success',
+        error: null,
+      };
+    } else {
+      const jsonRes = await res.json();
+      return {
+        response: null,
+        error: { status: res.status, message: jsonRes },
+      };
+    }
+  } catch (error) {
+    return {
+      response: null,
+      error,
+    };
+  }
+}
