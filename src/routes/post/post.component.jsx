@@ -44,7 +44,7 @@ const Post = () => {
   };
 
   const handleEditPost =()=>{
-    navigate(`/edit-post/${postId}`);
+    navigate(`/edit-blog/${postId}`);
   }
 
   return blogData.headline ? (

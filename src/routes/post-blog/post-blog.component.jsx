@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { postRequest } from "../../utils/fetch-api.util";
+import { getRequest, patchRequest, postRequest } from "../../utils/fetch-api.util";
 
 import InputImage from "../../components/image-input/image-input.component";
 import FormHeader from "../../components/form-header/form-header.component";
@@ -28,12 +28,29 @@ const DEFAULT_BLOGDATA = {
 };
 
 const PostBlog = () => {
+  const {postId} =useParams();
   const navigate = useNavigate();
+
   const [blogImage, setBlogImage] = useState(null);
   const [blogData, setBlogData] = useState(DEFAULT_BLOGDATA);
 
   const contentEdityableRef = useRef(null);
   const isFirstmount = useRef(0);
+
+  const getPostData = async () => {
+    const { response, error } = await getRequest(
+      `http://localhost:8080/o/headless-delivery/v1.0/blog-postings/${postId}`
+    );
+    if (error) return console.log(error);
+    setBlogData(response);
+  };
+
+  useEffect(()=>{
+    if(postId) getPostData();
+  },[]);
+
+
+
 
   const handleImageInput = (e) => {
     const imageFile = e.target.files[0];
@@ -78,8 +95,22 @@ const PostBlog = () => {
 
   }
 
+  const updateBlogData = async ()=>{
+    const finalBlogData = blogData;
+
+    const {response, error} =await patchRequest(`http://localhost:8080/o/headless-delivery/v1.0/blog-postings/${postId}`, finalBlogData);
+
+    if(error) return console.log(error);
+
+    console.log(response);
+    navigate(`/post/${response.id}`)
+  }
+
   const handleFormSubmit = async(e) => {
     e.preventDefault();
+
+    if(postId) return updateBlogData();
+
     const imageId = await uploadImage();
     await uploadBlogData(imageId);
   };
@@ -198,7 +229,10 @@ const PostBlog = () => {
           handleKeyUpEvent={handleKeyUpEvent}
           keywords={blogData.keywords}
         />
+        {
+          postId?null:
         <InputImage handleImageInput={handleImageInput} imageData={blogImage} />
+        }
         <CustomButton buttonText="Submit" />
       </PostBlogForm>
     </PostBlogFormWrapper>

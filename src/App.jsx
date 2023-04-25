@@ -22,6 +22,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="post-blog" element={<PostBlog />} />
           <Route path="post/:postId" element={<Post />} />
+          <Route path="edit-blog/:postId" element={<PostBlog />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

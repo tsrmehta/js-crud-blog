@@ -70,6 +70,41 @@ export const postRequest = async (url, body) => {
     };
   }
 };
+export const patchRequest = async (url, body) => {
+  const headers= {
+    Authorization: AUTHORIZATION,
+  }
+
+  if(!(body instanceof FormData)) headers["Content-Type"] = "application/json";
+
+  try {
+    const res = await fetch(url, {
+      headers,
+      method: 'PATCH',
+      body: body instanceof FormData? body : JSON.stringify(body)
+    });
+
+    const jsonRes = await res.json();
+
+    if (res.ok) {
+      return {
+        response: jsonRes,
+        error: null,
+      };
+    } else {
+      return {
+        response: null,
+        error: { status: res.status, message: jsonRes },
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      response: null,
+      error,
+    };
+  }
+};
 
 export const deleteRequest = async(url)=>{
   try {
